@@ -10,16 +10,14 @@ image:
 tags: ["astro", "dev in public"]
 ---
 
-# Hello World
+Welcome to the inaugural post on Once Upon an Ipsum. This platform serves as a space where I'll be sharing miscellaneous insights about web programming. Additionally, it will serve as a public outlet for me to cultivate side projects.
 
-This is the first post on Once Upon an Ipsum. I plan to use Once Upon an Ipsum to share odds and ends about programming on the web and as an outlet to develop side projects in public.
+The website is predominantly constructed using the powerful combination of [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). The source code is hosted on [GitHub](https://github.com/mambroz27/onceuponanipsum) and deployed through [Cloudflare Pages](https://pages.cloudflare.com).
 
-The site is primarily built using [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). The site source code is on [GitHub](https://github.com/mambroz27/onceuponanipsum) and deployed with [Cloudflare Pages](https://pages.cloudflare.com).
+## Initial Steps with HUGO
 
-## Starting with HUGO
+Initially, I embarked on this project using [HUGO](https://gohugo.io), but it swiftly became apparent that it didn't align with my preferences. While it's common to work with tools one may not particularly enjoy in a professional setting, for a personal project, I believe it's crucial to work with tools that bring joy. There were nuances in HUGO that didn't resonate with my ideal developer experience. However, it's important to note that this isn't a critique of HUGO itself, as it serves its purpose well for many other developers.
 
-I started this project with [HUGO](https://gohugo.io) and quickly found I just didn't like it. In a professional setting sometimes you have to use tools you don't like, but for a personal project I'd rather use something I enjoy, there were small things in HUGO that didn't fit with my preferences in the developer experience. I don't want to dig into the things I didn't like because I don't want to give the impression that HUGO is bad. It's not. It just wasn't for me.
+## Transition to Astro
 
-## Moving to Astro
-
-I had been following Astro for a while and decided to give it a try. I'm glad I did, Astro is a joy to work with. I'm especially excited for the integrations available, like [React](https://reactjs.org), [Svelte](https://svelte.dev), and more. [MDX](https://mdxjs.com) is also a huge plus. I'm planning to showcase development challenges I encounter with other frameworks and Astro makes it easy to drop in components from other frameworks in the middle of my static site.
+Having kept an eye on Astro for some time, I eventually made the switch and haven't looked back since. Working with Astro has been an absolute delight. Its versatile integrations with other frameworks such as [React](https://reactjs.org) and [Svelte](https://svelte.dev) have been particularly exciting. Furthermore, the inclusion of [MDX](https://mdxjs.com) has proven to be a significant advantage. I plan to showcase the challenges I encounter while developing various projects, and Astro's flexibility makes it seamless to incorporate components from other frameworks within my static site.
