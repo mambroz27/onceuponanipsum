@@ -1,4 +1,6 @@
 ---
+import Svg from "../components/Svg.astro";
+
 const socials: { link: string; icon: string }[] = [
   { link: "https://github.com/mambroz27", icon: "fa-brands fa-github" },
   {
@@ -8,22 +10,43 @@ const socials: { link: string; icon: string }[] = [
 ];
 ---
 
-<footer class="bg-slate-400 p-6">
-  <div class="max-w-7xl mx-auto">
-    <div class="text-sm mb-2">
-      <p class="m-0">COPYRIGHT 2023 MICHAEL AMBROZAITIS</p>
-      <p class="m-0">
+<footer class="bg-light-accent p-6">
+  <div class="max-w-7xl mx-auto flex flex-col">
+    <div class="flex items-center gap-4 justify-center text-xl mb-8">
+      {
+        socials.map((social) => (
+          <a
+            href={social.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="h-6 w-6 text-[24px] leading-none flex items-center justify-center">
+            <i class={social.icon} />
+          </a>
+        ))
+      }
+    </div>
+    <div class="text-center mb-8 text-xs">
+      <p class="mb-2">COPYRIGHT 2023 MICHAEL AMBROZAITIS</p>
+      <p>
         This work is licensed under a <a
           href="https://creativecommons.org/licenses/by/4.0/"
           >Creative Commons Attribution 4.0 International License</a
         >. Share free and far across the land, but provide attribution.
       </p>
     </div>
-    <div class="flex gap-2">
-      <div class="mr-auto text-sm">
-        <p>DISCLAIMER</p>
-        <p>Opinions expressed here are my own.</p>
-      </div>
+    <div class="flex items-center justify-center text-xs mb-8">
+      <p>BUILT WITH</p>
+      <a
+        href="https://astro.build/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-block h-[30px] w-[114px] scale-75 child:!fill-light-text child-hover:fill-light-primary">
+        <Svg name="astro" />
+      </a>
+    </div>
+    <div class="text-center text-xs opacity-60">
+      <p class="mb-2">DISCLAIMER</p>
+      <p>Opinions expressed here are my own.</p>
     </div>
   </div>
 </footer>
