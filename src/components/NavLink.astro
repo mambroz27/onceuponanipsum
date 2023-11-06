@@ -1,0 +1,22 @@
+---
+export interface Props {
+  url: string;
+  openNew?: boolean;
+  classes?: string;
+}
+
+import { twMerge } from "tailwind-merge";
+
+const { url, openNew = false, classes = "" } = Astro.props as Props;
+const tw = twMerge(
+  "text-light-link hover:text-light-linkHover text-lg dark:text-dark-link dark:hover:text-dark-linkHover",
+  classes
+);
+---
+
+<a
+  href={url}
+  {...openNew && { target: "_blank", rel: "noopener noreferrer" }}
+  class={tw}>
+  <slot />
+</a>

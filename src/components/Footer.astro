@@ -1,27 +1,25 @@
 ---
-import Svg from "../components/Svg.astro";
+import IconLink from "./IconLink.astro";
 
 const socials: { link: string; icon: string }[] = [
-  { link: "https://github.com/mambroz27", icon: "fa-brands fa-github" },
+  { link: "https://github.com/mambroz27", icon: "github" },
   {
     link: "https://www.linkedin.com/in/michael-ambrozaitis-04290459/",
-    icon: "fa-brands fa-linkedin",
+    icon: "linkedin",
   },
 ];
 ---
 
-<footer class="bg-light-accent p-6">
+<footer class="bg-light-accent p-6 dark:bg-dark-accent">
   <div class="max-w-7xl mx-auto flex flex-col">
     <div class="flex items-center gap-4 justify-center text-xl mb-8">
       {
         socials.map((social) => (
-          <a
-            href={social.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="h-6 w-6 text-[24px] leading-none flex items-center justify-center">
-            <i class={social.icon} />
-          </a>
+          <IconLink
+            url={social.link}
+            icon={social.icon}
+            openNew={true}
+          />
         ))
       }
     </div>
@@ -36,13 +34,12 @@ const socials: { link: string; icon: string }[] = [
     </div>
     <div class="flex items-center justify-center text-xs mb-8">
       <p>BUILT WITH</p>
-      <a
-        href="https://astro.build/"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-block h-[30px] w-[114px] scale-75 child:!fill-light-text child-hover:fill-light-primary">
-        <Svg name="astro" />
-      </a>
+      <IconLink
+        url="https://astro.build/"
+        icon="astro"
+        openNew={true}
+        classes="h-[30px] w-[114px] scale-75"
+      />
     </div>
     <div class="text-center text-xs opacity-60">
       <p class="mb-2">DISCLAIMER</p>

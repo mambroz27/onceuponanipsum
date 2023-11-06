@@ -22,11 +22,11 @@ export default {
         },
         dark: {
           bg: defaultColors.indigo[950],
-          accent: defaultColors.indigo[700],
+          accent: defaultColors.indigo[900],
           primary: defaultColors.orange[700],
           text: defaultColors.gray[100],
           link: defaultColors.indigo[200],
-          linkHover: defaultColors.orange[100],
+          linkHover: defaultColors.orange[300],
         },
       },
     },
@@ -40,6 +40,12 @@ export default {
           transition: theme("transition.colors"),
           "&:hover": {
             color: theme("colors.light.linkHover"),
+          },
+          ".dark &": {
+            color: theme("colors.dark.link"),
+            "&:hover": {
+              color: theme("colors.dark.linkHover"),
+            },
           },
         },
       });
