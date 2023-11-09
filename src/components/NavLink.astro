@@ -8,8 +8,14 @@ export interface Props {
 import { twMerge } from "tailwind-merge";
 
 const { url, openNew = false, classes = "" } = Astro.props as Props;
+const fullUrl = new URL(Astro.request.url);
+const active = url === fullUrl.pathname;
+
 const tw = twMerge(
-  "text-light-link hover:text-light-linkHover text-lg dark:text-dark-link dark:hover:text-dark-linkHover",
+  "text-light-link hover:text-light-linkHover",
+  "no-underline text-lg",
+  "dark:text-dark-link dark:hover:text-dark-linkHover",
+  active ? "underline text-underline-offset-4" : "",
   classes
 );
 ---

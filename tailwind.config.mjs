@@ -16,7 +16,7 @@ export default {
           bg: defaultColors.indigo[50],
           accent: defaultColors.indigo[200],
           primary: defaultColors.orange[500],
-          text: defaultColors.gray[900],
+          text: defaultColors.stone[700],
           link: defaultColors.indigo[700],
           linkHover: defaultColors.orange[600],
         },
@@ -24,7 +24,7 @@ export default {
           bg: defaultColors.indigo[950],
           accent: defaultColors.indigo[900],
           primary: defaultColors.orange[700],
-          text: defaultColors.gray[100],
+          text: defaultColors.stone[200],
           link: defaultColors.indigo[200],
           linkHover: defaultColors.orange[300],
         },
@@ -38,6 +38,8 @@ export default {
         a: {
           color: theme("colors.light.link"),
           transition: theme("transition.colors"),
+          textDecoration: "underline",
+          textUnderlineOffset: theme("textUnderlineOffset.2"),
           "&:hover": {
             color: theme("colors.light.linkHover"),
           },
