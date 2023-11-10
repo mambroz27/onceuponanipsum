@@ -11,7 +11,9 @@ import { twMerge } from "tailwind-merge";
 const { url, icon, openNew = false, classes = "" } = Astro.props as Props;
 const { default: innerHTML } = await import(`../assets/icons/${icon}.svg?raw`);
 const tw = twMerge(
-  "inline-block h-6 w-6 child:!fill-light-link child-hover:fill-light-linkHover text-[24px] leading-[24px] flex items-center justify-center dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover",
+  "h-6 w-6 text-[24px] leading-[24px] flex items-center justify-center",
+  "child:!fill-light-link child-hover:fill-light-linkHover",
+  "dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover",
   classes
 );
 ---
