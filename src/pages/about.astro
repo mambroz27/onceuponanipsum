@@ -1,27 +1,8 @@
 ---
-const pageTitle = "About Me";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/favicon.ico"
-    />
-    <meta
-      name="viewport"
-      content="width=device-width"
-    />
-    <meta
-      name="generator"
-      content={Astro.generator}
-    />
-    <title>{pageTitle}</title>
-  </head>
-  <body>
-    <h1>About</h1>
-    <a href="/">Home</a>
-  </body>
-</html>
+<BaseLayout pageTitle="About">
+  <h1>404</h1>
+  <p>Page not found</p>
+</BaseLayout>

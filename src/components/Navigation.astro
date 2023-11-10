@@ -3,22 +3,24 @@ import NavLink from "./NavLink.astro";
 import DarkModeToggle from "./svelte/DarkModeToggle.svelte";
 ---
 
-<nav
-  class="border-t border-b border-black/20 dark:border-white/20 py-2 flex items-center justify-center gap-4">
-  <NavLink
-    url="/articles"
-    classes="text-base sm:text-lg">
-    Articles
-  </NavLink>
-  <NavLink
-    url="/projects"
-    classes="text-base sm:text-lg">
-    Projects
-  </NavLink>
-  <NavLink
-    url="/about"
-    classes="text-base sm:text-lg">
-    About
-  </NavLink>
-  <DarkModeToggle client:load />
+<nav class="max-w-4xl mx-auto w-full">
+  <div
+    class="border-t border-b border-black/20 dark:border-white/20 py-2 flex items-center justify-center gap-4 mx-3 md:mx-6">
+    <NavLink
+      url="/articles"
+      classes="text-base sm:text-lg">
+      Articles
+    </NavLink>
+    <NavLink
+      url="/projects"
+      classes="text-base sm:text-lg">
+      Projects
+    </NavLink>
+    <NavLink
+      url="/about"
+      classes="text-base sm:text-lg">
+      About
+    </NavLink>
+    <DarkModeToggle client:load />
+  </div>
 </nav>

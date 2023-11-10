@@ -1,0 +1,85 @@
+---
+export interface Props {
+  pageTitle?: string | null;
+}
+
+import Header from "../components/Header.astro";
+import Navigation from "../components/Navigation.astro";
+import Footer from "../components/Footer.astro";
+
+const { pageTitle = null } = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/favicon.ico"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aclonica&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      is:inline
+      src="https://kit.fontawesome.com/6a372628d6.js"
+      crossorigin="anonymous"
+    ></script>
+    <meta
+      name="viewport"
+      content="width=device-width"
+    />
+    <meta
+      name="generator"
+      content={Astro.generator}
+    />
+    <title>
+      {
+        pageTitle !== null
+          ? pageTitle + " | Once Upon an Ipsum"
+          : "Once Upon an Ipsum"
+      }
+    </title>
+
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+  </head>
+  <body
+    class="flex flex-col min-h-screen bg-light-bg text-light-text dark:bg-dark-bg dark:text-dark-text">
+    <Header />
+    <Navigation />
+    <main class="grow max-w-4xl mx-auto w-full px-3 py-6 md:px-6">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
