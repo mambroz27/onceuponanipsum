@@ -1,9 +1,10 @@
 ---
+layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Hello World"
 date: 2023-10-29
 draft: true
 description: "Spinning up Once Upon an Ipsum with Astro."
-author: "Michael Ambrozaitis"
+author: "Mike Ambrozaitis"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "The full Astro logo."
