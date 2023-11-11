@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title: string;
+  url: string | undefined;
+  author: { name: string; img?: string };
+  date: string;
+  description?: string | null;
+  tags?: string[] | null;
+}
+
+const {
+  title,
+  url,
+  author,
+  date,
+  description = null,
+  tags = null,
+} = Astro.props as Props;
+---
+
+<li class="prose prose-slate dark:prose-invert">
+  <h3 class="text-2xl mb-0">
+    <a
+      href={url}
+      class="no-underline"
+      >{title}</a
+    >
+  </h3>
+  <small>{author.name} | {date}</small>
+  <p>{description}</p>
+</li>

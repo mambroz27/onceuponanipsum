@@ -46,7 +46,7 @@ export default {
           bg: tropicalIndigo[50],
           accent: tropicalIndigo[200],
           primary: defaultColors.orange[500],
-          text: defaultColors.stone[700],
+          text: defaultColors.slate[700],
           link: defaultColors.indigo[700],
           linkHover: defaultColors.orange[600],
         },
@@ -54,12 +54,25 @@ export default {
           bg: tropicalIndigo[950],
           accent: tropicalIndigo[900],
           primary: defaultColors.orange[700],
-          text: defaultColors.stone[200],
+          text: defaultColors.slate[200],
           link: defaultColors.indigo[200],
           linkHover: defaultColors.orange[300],
         },
       },
       typography: (theme) => ({
+        slate: {
+          css: {
+            "--tw-prose-links": theme("colors.light.link"),
+            "--tw-prose-invert-headings": theme("colors.slate.100"),
+            "--tw-prose-invert-links": theme("colors.dark.link"),
+            "--tw-prose-invert-bold": theme("colors.slate.100"),
+            "--tw-prose-invert-kbd": theme("colors.slate.100"),
+            "--tw-prose-invert-kbd-shadows": hexToRgb(
+              theme("colors.slate.100")
+            ),
+            "--tw-prose-invert-code": theme("colors.slate.100"),
+          },
+        },
         stone: {
           css: {
             "--tw-prose-body": theme("colors.stone.700"),

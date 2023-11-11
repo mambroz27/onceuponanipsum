@@ -1,8 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleStub from "../components/ArticleStub.astro";
+
+const allPosts = await Astro.glob("./articles/*.md");
 ---
 
 <BaseLayout pageTitle="Articles">
-  <h1>404</h1>
-  <p>Page not found</p>
+  <ul>
+    {
+      allPosts.map((post) => (
+        <ArticleStub
+          title={post.frontmatter.title}
+          url={post.url}
+          author={post.frontmatter.author}
+          date={post.frontmatter.date}
+          description={post.frontmatter.description || null}
+        />
+      ))
+    }
+  </ul>
 </BaseLayout>
