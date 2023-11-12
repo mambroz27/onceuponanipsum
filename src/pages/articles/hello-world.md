@@ -3,7 +3,6 @@ layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Hello World"
 date: 2023-10-29
 draft: true
-description: "Spinning up Once Upon an Ipsum with Astro."
 author:
   name: "Mike Ambrozaitis"
 image:

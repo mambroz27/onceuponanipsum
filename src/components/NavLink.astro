@@ -12,9 +12,10 @@ const fullUrl = new URL(Astro.request.url);
 const active = url === fullUrl.pathname;
 
 const tw = twMerge(
+  "nav-link",
   "text-light-link hover:text-light-linkHover",
-  "no-underline text-lg",
   "dark:text-dark-link dark:hover:text-dark-linkHover",
+  "no-underline text-lg",
   active ? "text-light-linkHover dark:text-dark-linkHover" : "",
   classes
 );

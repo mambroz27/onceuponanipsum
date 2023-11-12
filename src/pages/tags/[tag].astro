@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleStub from "../../components/ArticleStub.astro";
+
+export async function getStaticPaths() {
+  const articles = await Astro.glob("../articles/*.md");
+
+  return [
+    { params: { tag: "astro" }, props: { articles } },
+    { params: { tag: "dev in public" }, props: { articles } },
+  ];
+}
+
+const { tag } = Astro.params;
+const { articles } = Astro.props;
+const filteredArticles = articles.filter((post) =>
+  post.frontmatter.tags?.includes(tag)
+);
+---
+
+<BaseLayout pageTitle={tag}>
+  <h2>Articles tagged with {tag}</h2>
+  <ul>
+    {
+      filteredArticles.map((post) => (
+        <ArticleStub
+          title={post.frontmatter.title}
+          url={post.url}
+          date={post.frontmatter.date}
+        />
+      ))
+    }
+  </ul>
+</BaseLayout>
