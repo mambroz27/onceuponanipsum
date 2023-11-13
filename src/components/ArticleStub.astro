@@ -2,15 +2,23 @@
 export interface Props {
   url: string | undefined;
   title: string;
-  date: string;
+  pubDate: string;
+  author: string;
   excerpt?: string | null;
   tags?: string[] | null;
   img?: string | null;
 }
 
-const { title, url, date, excerpt = null, tags = null } = Astro.props as Props;
+const {
+  title,
+  author,
+  url,
+  pubDate,
+  excerpt = null,
+  tags = null,
+} = Astro.props as Props;
 
-const dateObj = new Date(date);
+const dateObj = new Date(pubDate);
 const formattedDate = dateObj.toLocaleDateString("en-US", {
   weekday: "long",
   year: "numeric",
@@ -21,7 +29,7 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
 
 <li class="prose prose-slate dark:prose-invert">
   <small class="text-light-textMuted dark:text-dark-textMuted"
-    >{formattedDate}</small
+    >{formattedDate} | {author}</small
   >
   <h2 class="text-2xl my-0">
     <a
@@ -30,5 +38,16 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
       >{title}</a
     >
   </h2>
+  {
+    tags && (
+      <div>
+        {tags.map((tag) => (
+          <p class="tag">
+            <a href={`/tags/${tag}`}>{tag}</a>
+          </p>
+        ))}
+      </div>
+    )
+  }
   <p class="text-lg">{excerpt}</p>
 </li>

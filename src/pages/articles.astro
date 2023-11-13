@@ -12,7 +12,9 @@ const allPosts = await Astro.glob("./articles/*.md");
         <ArticleStub
           title={post.frontmatter.title}
           url={post.url}
-          date={post.frontmatter.date}
+          pubDate={post.frontmatter.pubDate}
+          author={post.frontmatter.author}
+          tags={post.frontmatter.tags}
         />
       ))
     }

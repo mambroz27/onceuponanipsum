@@ -1,10 +1,9 @@
 ---
 layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Hello World"
-date: 2023-10-29
-draft: true
-author:
-  name: "Mike Ambrozaitis"
+pubDate: 2023-10-29
+description: "Welcome to the inaugural post on Once Upon an Ipsum. This platform serves as a space where I'll be sharing miscellaneous insights about web programming. Additionally, it will serve as a public outlet for me to cultivate side projects."
+author: "Mike Ambrozaitis"
 image:
   url: "https://docs.astro.build/assets/full-logo-light.png"
   alt: "The full Astro logo."
