@@ -1,22 +1,27 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import ArticleStub from "../components/ArticleStub.astro";
+import Stub from "../components/Stub.astro";
+import { getCollection } from "astro:content";
 
-const allPosts = await Astro.glob("./articles/*.md");
+const articlesCollection = await getCollection("articles");
+
+// TODO: Add pagination as more is written
 ---
 
 <BaseLayout pageTitle="Articles">
-  <ul>
+  <div class="flex flex-col gap-8">
     {
-      allPosts.map((post) => (
-        <ArticleStub
-          title={post.frontmatter.title}
-          url={post.url}
-          pubDate={post.frontmatter.pubDate}
-          author={post.frontmatter.author}
-          tags={post.frontmatter.tags}
+      articlesCollection.map((article) => (
+        <Stub
+          slug={`/articles/${article.slug}`}
+          title={article.data.title}
+          pubDate={article.data.pubDate}
+          author={article.data.author}
+          description={article.data.description}
+          tags={article.data.tags}
+          img={article.data.image}
         />
       ))
     }
-  </ul>
+  </div>
 </BaseLayout>

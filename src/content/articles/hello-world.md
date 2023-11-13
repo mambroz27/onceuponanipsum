@@ -1,13 +1,12 @@
 ---
-layout: "../../layouts/MarkdownPostLayout.astro"
 title: "Hello World"
 pubDate: 2023-10-29
-description: "Welcome to the inaugural post on Once Upon an Ipsum. This platform serves as a space where I'll be sharing miscellaneous insights about web programming. Additionally, it will serve as a public outlet for me to cultivate side projects."
+description: "Welcome to the inaugural post on Once Upon an Ipsum. This is a a space where I'll be sharing miscellaneous insights about web programming and as a public outlet where I can cultivate side projects."
 author: "Mike Ambrozaitis"
 image:
-  url: "https://docs.astro.build/assets/full-logo-light.png"
+  url: "/img/astro-logo-light-gradient.png"
   alt: "The full Astro logo."
-tags: ["astro", "dev in public"]
+tags: ["astro", "dev-in-public"]
 ---
 
 Welcome to the inaugural post on Once Upon an Ipsum. This platform serves as a space where I'll be sharing miscellaneous insights about web programming. Additionally, it will serve as a public outlet for me to cultivate side projects.
@@ -20,4 +19,4 @@ Initially, I embarked on this project using [HUGO](https://gohugo.io), but it sw
 
 ## Transition to Astro
 
-Having kept an eye on Astro for some time, I eventually made the switch and haven't looked back since. Working with Astro has been an absolute delight. Its versatile integrations with other frameworks such as [React](https://reactjs.org) and [Svelte](https://svelte.dev) have been particularly exciting. Furthermore, the inclusion of [MDX](https://mdxjs.com) has proven to be a significant advantage. I plan to showcase the challenges I encounter while developing various projects, and Astro's flexibility makes it seamless to incorporate components from other frameworks within my static site.
+Having kept an eye on Astro for some time, I eventually made the switch and haven't looked back since. Working with Astro has been an absolute delight. Its versatile integrations with other frameworks such as [React](https://reactjs.org) and [Svelte](https://svelte.dev) have been particularly exciting. Furthermore, the inclusion of [MDX](https://mdxjs.com) is a very exciting prospect. I plan to showcase the challenges I encounter while developing various projects, and Astro's flexibility makes it seamless to incorporate components from other frameworks within my static site.

@@ -1,0 +1,95 @@
+---
+export interface Props {
+  slug: string;
+  title: string;
+  pubDate: Date;
+  author: string;
+  description: string | null;
+  tags: string[];
+  img: {
+    url: string;
+    alt: string;
+  } | null;
+  classes?: string;
+  clampDescriptionTo?: number;
+}
+
+import { twMerge } from "tailwind-merge";
+import { Picture } from "astro-imagetools/components";
+
+const {
+  slug,
+  title,
+  pubDate,
+  author,
+  description,
+  tags,
+  img,
+  classes = "",
+  clampDescriptionTo = 180,
+} = Astro.props as Props;
+
+const dateObj = new Date(pubDate);
+const formattedDate = dateObj.toLocaleDateString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+const formattedDescription =
+  description !== null
+    ? description.length > clampDescriptionTo
+      ? `${description.slice(0, clampDescriptionTo - 1)}\u2026`
+      : description
+    : null;
+
+const stubClasses = twMerge(
+  "styled-link",
+  "block relative p-5 top-0 transition-all duration-300 ease-out cursor-pointer will-change-transform",
+  "bg-transparent",
+  "border-2 rounded-md",
+  "hover:shadow-lg hover:-top-[2px]",
+  "border-light-accent hover:bg-light-accent/25 hover:shadow-light-link/20",
+  "dark:border-dark-accent dark:hover:bg-dark-accent/25 dark:hover:shadow-dark-link/20",
+  classes
+);
+
+// TODO: Add some special styling for projects, maybe for articles too. Maybe a ghosted background image of some kind?
+---
+
+<a
+  class={stubClasses}
+  href={slug}>
+  <div class="flex items-center gap-5">
+    <div class="rounded-md overflow-hidden w-72 h-[150px] flex-shrink-0">
+      <Picture
+        src={img?.url}
+        alt={img?.alt}
+        width={288}
+        height={150}
+        loading="lazy"
+      />
+    </div>
+    <div
+      class="prose prose-slate dark:prose-invert self-start h-[150px] overflow-hidden">
+      <small class="text-light-textMuted dark:text-dark-textMuted text-xs"
+        >{formattedDate} | {author}</small
+      >
+      <h2 class="text-xl my-2 text-light-link dark:text-dark-link">
+        {title}
+      </h2>
+      <p class="text-sm leading-relaxed">
+        {formattedDescription}
+      </p>
+    </div>
+  </div>
+  <div class="flex items-center justify-end mt-3 gap-2">
+    {
+      tags.map((tag) => (
+        <span class="text-xs text-light-textMuted dark:text-dark-textMuted bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
+          #{tag}
+        </span>
+      ))
+    }
+  </div>
+</a>

@@ -1,21 +1,23 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const allArticles = await Astro.glob("../articles/*.md");
+const articlesCollection = await getCollection("articles");
 const tags = [
-  ...new Set(allArticles.map((article) => article.frontmatter.tags).flat()),
+  ...new Set(articlesCollection.map((article) => article.data.tags).flat()),
 ];
 const pageTitle = "Tag Index";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <h2>Tags</h2>
-  <div>
+  <div class="flex flex-wrap gap-4">
     {
       tags.map((tag) => (
-        <p>
-          <a href={`/tags/${tag}`}>{tag}</a>
-        </p>
+        <a
+          href={`/tags/${tag}`}
+          class="styled-link text-2xl text-light-textMuted dark:text-dark-textMuted bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
+          #{tag}
+        </a>
       ))
     }
   </div>

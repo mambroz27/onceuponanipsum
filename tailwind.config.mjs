@@ -47,9 +47,9 @@ export default {
           accent: tropicalIndigo[200],
           primary: defaultColors.orange[500],
           text: defaultColors.slate[700],
-          textMuted: defaultColors.slate[500],
+          textMuted: defaultColors.slate[600],
           link: defaultColors.indigo[700],
-          linkHover: defaultColors.orange[600],
+          linkHover: defaultColors.orange[700],
         },
         dark: {
           bg: tropicalIndigo[950],
@@ -82,7 +82,7 @@ export default {
     require("@tailwindcss/typography"),
     function ({ addComponents, theme }) {
       addComponents({
-        "a:not(.nav-link):not(.branding)": {
+        "a:not(.styled-link)": {
           color: theme("colors.light.link"),
           transition: theme("transition.colors"),
           textDecoration: "underline",

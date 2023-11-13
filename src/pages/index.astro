@@ -1,8 +1,45 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Stub from "@/components/Stub.astro";
+
+const showMax = 10;
+const articlesCollection = await getCollection("articles");
+const articles = articlesCollection
+  .sort((a, b) => {
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  })
+  .slice(0, showMax);
+
+// TODO: Include Projects collection, where should a view more link go?
 ---
 
 <BaseLayout>
-  <h1>404</h1>
-  <p>Page not found</p>
+  <div class="flex flex-col gap-8">
+    {
+      articles.map((article) => (
+        <Stub
+          slug={`/${article.collection}/${article.slug}`}
+          title={article.data.title}
+          pubDate={article.data.pubDate}
+          author={article.data.author}
+          description={article.data.description}
+          tags={article.data.tags}
+          img={article.data.image}
+        />
+      ))
+    }
+
+    {
+      articlesCollection.length > showMax ? (
+        <div class="flex items-center justify-center">
+          <a
+            href="/articles"
+            class="styled-link block relative p-5 top-0 transition-all duration-300 ease-out cursor-pointer will-change-transform bg-transparent border-2 rounded-md hover:shadow-lg hover:-top-[2px] border-light-accent hover:bg-light-accent/25 hover:shadow-light-link/20 dark:border-dark-accent dark:hover:bg-dark-accent/25 dark:hover:shadow-dark-link/20">
+            View More Articles
+          </a>
+        </div>
+      ) : null
+    }
+  </div>
 </BaseLayout>

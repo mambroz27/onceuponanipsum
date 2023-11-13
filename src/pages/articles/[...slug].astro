@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import MdArticleLayout from "@/layouts/MdArticleLayout.astro";
+
+export async function getStaticPaths() {
+  const articlesCollection = await getCollection("articles");
+
+  return articlesCollection.map((item) => ({
+    params: { slug: item.slug },
+    props: { article: item },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+---
+
+<MdArticleLayout frontmatter={article.data}>
+  <Content />
+</MdArticleLayout>
