@@ -36,6 +36,11 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
   month: "long",
   day: "numeric",
 });
+const formattedShortDate = dateObj.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
 const formattedDescription =
   description !== null
     ? description.length > clampDescriptionTo
@@ -45,7 +50,7 @@ const formattedDescription =
 
 const stubClasses = twMerge(
   "styled-link",
-  "block relative p-5 top-0 transition-all duration-300 ease-out cursor-pointer will-change-transform",
+  "block relative p-[18px] md:p-5 top-0 transition-all duration-300 ease-out cursor-pointer will-change-transform",
   "bg-transparent",
   "border-2 rounded-md",
   "hover:shadow-lg hover:-top-[2px]",
@@ -60,8 +65,9 @@ const stubClasses = twMerge(
 <a
   class={stubClasses}
   href={slug}>
-  <div class="flex items-center gap-5">
-    <div class="rounded-md overflow-hidden w-72 h-[150px] flex-shrink-0">
+  <div class="flex flex-col md:flex-row items-center md:items-start gap-5">
+    <div
+      class="rounded-md overflow-hidden w-64 md:w-72 h-[134px] md:h-[150px] flex-shrink-0">
       <Picture
         src={img?.url}
         alt={img?.alt}
@@ -71,9 +77,11 @@ const stubClasses = twMerge(
       />
     </div>
     <div
-      class="prose prose-slate dark:prose-invert self-start h-[150px] overflow-hidden">
+      class="prose prose-slate dark:prose-invert h-52 md:h-[180px] lg:h-[150px] overflow-hidden">
       <small class="text-light-textMuted dark:text-dark-textMuted text-xs"
-        >{formattedDate} | {author}</small
+        ><span class="hidden md:inline">{formattedDate}</span><span
+          class="md:hidden">{formattedShortDate}</span
+        > | {author}</small
       >
       <h2 class="text-xl my-2 text-light-link dark:text-dark-link">
         {title}
