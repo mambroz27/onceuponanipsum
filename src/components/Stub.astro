@@ -78,12 +78,14 @@ const stubClasses = twMerge(
     </div>
     <div
       class="prose prose-slate dark:prose-invert h-52 md:h-[180px] lg:h-[150px] overflow-hidden">
-      <small class="text-light-textMuted dark:text-dark-textMuted text-xs"
+      <small
+        class="text-light-textMuted dark:text-dark-textMuted dark-transition text-xs"
         ><span class="hidden md:inline">{formattedDate}</span><span
           class="md:hidden">{formattedShortDate}</span
         > | {author}</small
       >
-      <h2 class="text-xl my-2 text-light-link dark:text-dark-link">
+      <h2
+        class="text-xl my-2 text-light-link dark:text-dark-link dark-transition">
         {title}
       </h2>
       <p class="text-sm leading-relaxed">
@@ -94,7 +96,7 @@ const stubClasses = twMerge(
   <div class="flex items-center justify-end mt-3 gap-2">
     {
       tags.map((tag) => (
-        <span class="text-xs text-light-textMuted dark:text-dark-textMuted bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
+        <span class="text-xs text-light-textMuted dark:text-dark-textMuted dark-transition bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
           #{tag}
         </span>
       ))

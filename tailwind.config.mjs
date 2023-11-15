@@ -80,11 +80,22 @@ export default {
   },
   plugins: [
     require("@tailwindcss/typography"),
+    function ({ addUtilities, theme }) {
+      addUtilities({
+        ".dark-transition": {
+          transition: theme("transitionProperty.colors"),
+          transitionTimingFunction: theme("transitionTimingFunction.out"),
+          transitionDuration: theme("transitionDuration.300"),
+        },
+      });
+    },
     function ({ addComponents, theme }) {
       addComponents({
         "a:not(.styled-link)": {
           color: theme("colors.light.link"),
-          transition: theme("transition.colors"),
+          transition: theme("transitionPropery.colors"),
+          transitionTimingFunction: theme("transitionTimingFunction.out"),
+          transitionDuration: theme("transitionDuration.100"),
           textDecoration: "underline",
           textUnderlineOffset: theme("textUnderlineOffset.2"),
           "&:hover": {

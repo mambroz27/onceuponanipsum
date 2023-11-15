@@ -1,6 +1,6 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Stub from "../components/Stub.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Stub from "@/components/Stub.astro";
 import { getCollection } from "astro:content";
 
 const articlesCollection = await getCollection("articles");

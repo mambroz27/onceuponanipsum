@@ -67,7 +67,7 @@
 <button
   class="{activeTheme === null
     ? 'pointer-events-none'
-    : ''} scale-75 h-6 w-6 child:!fill-light-link child-hover:!fill-light-linkHover text-[24px] leading-[24px] flex items-center justify-center dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover child:transition-colors child:duration-300"
+    : ''} scale-75 h-6 w-6 child:!fill-light-link child-hover:!fill-light-linkHover text-[24px] leading-[24px] flex items-center justify-center dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover child:dark-transition"
   on:click={toggleTheme}
 >
   {@html activeTheme === "light" ? darkModeIcon : lightModeIcon}
