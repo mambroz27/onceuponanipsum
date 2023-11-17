@@ -24,18 +24,13 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
     <h1>{frontmatter.title}</h1>
     {
       frontmatter.image && (
-        <div class="not-prose">
+        <div class="not-prose rounded-3xl overflow-hidden">
           <Picture
             src={frontmatter.image?.url}
             alt={frontmatter.image?.alt}
             width={1200}
             height={630}
             loading="lazy"
-            attributes={{
-              img: {
-                class: "rounded-3xl",
-              },
-            }}
           />
         </div>
       )
