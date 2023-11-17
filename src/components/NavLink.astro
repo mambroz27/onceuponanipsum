@@ -12,10 +12,14 @@ const fullUrl = new URL(Astro.request.url);
 const active = url === fullUrl.pathname;
 
 const tw = twMerge(
-  "styled-link dark-transition",
-  "text-light-link hover:text-light-linkHover",
-  "dark:text-dark-link dark:hover:text-dark-linkHover",
-  "no-underline text-lg",
+  "styled-link",
+  "flex items-center justify-center px-4 cursor-pointer gap-2 h-12 border-box",
+  "transition-all duration-300 ease-out will-change-transform",
+  "text-light-link dark:text-dark-link",
+  "rounded-full border-2 border-transparent",
+  "hover:border-light-textMuted/10 dark:hover:border-dark-textMuted/10",
+  "bg-transparent",
+  "hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5",
   active ? "text-light-linkHover dark:text-dark-linkHover" : "",
   classes
 );

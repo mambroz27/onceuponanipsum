@@ -7,6 +7,9 @@
   let userTheme: "light" | "dark" | null = null;
   let activeTheme: "light" | "dark" | null = null;
 
+  const styles =
+    "styled-link border-box flex items-center justify-center p-2 cursor-pointer transition-all duration-300 ease-out will-change-transform child:!fill-light-link child:dark:!fill-dark-link rounded-full border-2 border-transparent hover:border-light-textMuted/10 dark:hover:border-dark-textMuted/10 bg-transparent hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5 text-lg leading-[18px] h-12 w-12 child:scale-75";
+
   onMount(() => {
     // Get the saved theme preference
     userTheme = localStorage.getItem("theme") as "light" | "dark" | null;
@@ -66,8 +69,8 @@
 
 <button
   class="{activeTheme === null
-    ? 'pointer-events-none'
-    : ''} scale-75 h-6 w-6 child:!fill-light-link child-hover:!fill-light-linkHover text-[24px] leading-[24px] flex items-center justify-center dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover child:dark-transition"
+    ? 'opacity-0 pointer-events-none'
+    : 'opacity-100'} {styles}"
   on:click={toggleTheme}
 >
   {@html activeTheme === "light" ? darkModeIcon : lightModeIcon}

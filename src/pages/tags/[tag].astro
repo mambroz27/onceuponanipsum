@@ -1,7 +1,8 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Stub from "../../components/Stub.astro";
-import { getCollection } from "astro:content";
+import NavLink from "@/components/NavLink.astro";
 
 // TODO: Add projects collection
 
@@ -32,11 +33,11 @@ const { articles } = Astro.props;
       class="text-2xl text-light-textMuted dark:text-dark-textMuted bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1 dark-transition">
       #{tag}
     </h2>
-    <a
-      href="/tags"
-      class="ml-auto"
-      >View All Tags</a
-    >
+    <NavLink
+      url="/tags"
+      classes="ml-auto">
+      View All Tags
+    </NavLink>
   </div>
   <div class="flex flex-col gap-8 mt-8">
     {

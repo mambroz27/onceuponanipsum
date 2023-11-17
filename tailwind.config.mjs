@@ -58,7 +58,7 @@ export default {
           text: defaultColors.slate[200],
           textMuted: defaultColors.slate[300],
           link: defaultColors.indigo[200],
-          linkHover: defaultColors.orange[300],
+          linkHover: defaultColors.orange[400],
         },
       },
       typography: (theme) => ({
