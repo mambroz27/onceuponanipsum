@@ -17,19 +17,7 @@ const articles = articlesCollection
 
 <BaseLayout>
   <div class="flex flex-col gap-8">
-    {
-      articles.map((article) => (
-        <Stub
-          slug={`/${article.collection}/${article.slug}`}
-          title={article.data.title}
-          pubDate={article.data.pubDate}
-          author={article.data.author}
-          description={article.data.description}
-          tags={article.data.tags}
-          img={article.data.image}
-        />
-      ))
-    }
+    {articles.map((article) => <Stub article={article} />)}
 
     {
       articlesCollection.length > showMax ? (

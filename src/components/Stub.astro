@@ -1,37 +1,21 @@
 ---
+import type { CollectionEntry } from "astro:content";
+import { twMerge } from "tailwind-merge";
+import { Picture } from "astro-imagetools/components";
+
 export interface Props {
-  slug: string;
-  title: string;
-  pubDate: Date;
-  author: string;
-  description: string | undefined;
-  tags: string[];
-  img:
-    | {
-        src: string;
-        alt: string;
-      }
-    | undefined;
+  article: CollectionEntry<"articles">;
   classes?: string;
   clampDescriptionTo?: number;
 }
 
-import { twMerge } from "tailwind-merge";
-import { Picture } from "astro-imagetools/components";
-
 const {
-  slug,
-  title,
-  pubDate,
-  author,
-  description,
-  tags,
-  img,
+  article,
   classes = "",
   clampDescriptionTo = 180,
 } = Astro.props as Props;
 
-const dateObj = new Date(pubDate);
+const dateObj = new Date(article.data.pubDate);
 const formattedDate = dateObj.toLocaleDateString("en-US", {
   weekday: "long",
   year: "numeric",
@@ -45,10 +29,10 @@ const formattedShortDate = dateObj.toLocaleDateString("en-US", {
 });
 
 const formattedDescription =
-  description !== undefined
-    ? description.length > clampDescriptionTo
-      ? `${description.slice(0, clampDescriptionTo - 1)}\u2026`
-      : description
+  article.data.description !== undefined
+    ? article.data.description.length > clampDescriptionTo
+      ? `${article.data.description.slice(0, clampDescriptionTo - 1)}\u2026`
+      : article.data.description
     : null;
 
 const stubClasses = twMerge(
@@ -67,14 +51,14 @@ const stubClasses = twMerge(
 
 <a
   class={stubClasses}
-  href={slug}>
+  href=`/articles/${article.slug}`>
   <div class="flex flex-col md:flex-row items-center md:items-start gap-5">
     {
-      img && (
+      article.data.image && (
         <div class="rounded-md overflow-hidden w-64 md:w-72 h-[134px] md:h-[150px] flex-shrink-0">
           <Picture
-            src={img.src}
-            alt={img.alt}
+            src={article.data.image.src}
+            alt={article.data.image.alt}
             width={1200}
             height={630}
             loading="lazy"
@@ -88,11 +72,11 @@ const stubClasses = twMerge(
         class="text-light-textMuted dark:text-dark-textMuted dark-transition text-xs"
         ><span class="hidden md:inline">{formattedDate}</span><span
           class="md:hidden">{formattedShortDate}</span
-        > | {author}</small
+        > | {article.data.author}</small
       >
       <h2
         class="text-xl my-2 text-light-link dark:text-dark-link dark-transition">
-        {title}
+        {article.data.title}
       </h2>
       <p class="text-sm leading-relaxed">
         {formattedDescription}
@@ -101,7 +85,7 @@ const stubClasses = twMerge(
   </div>
   <div class="flex items-center justify-end mt-3 gap-2">
     {
-      tags.map((tag) => (
+      article.data.tags.map((tag) => (
         <span class="text-xs text-light-textMuted dark:text-dark-textMuted dark-transition bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
           #{tag}
         </span>

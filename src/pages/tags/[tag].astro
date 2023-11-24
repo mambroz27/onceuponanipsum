@@ -40,18 +40,6 @@ const { articles } = Astro.props;
     </NavLink>
   </div>
   <div class="flex flex-col gap-8 mt-8">
-    {
-      articles.map((article: any) => (
-        <Stub
-          slug={`/articles/${article.slug}`}
-          title={article.data.title}
-          pubDate={article.data.pubDate}
-          author={article.data.author}
-          description={article.data.description}
-          tags={article.data.tags}
-          img={article.data.image}
-        />
-      ))
-    }
+    {articles.map((article: any) => <Stub article={article} />)}
   </div>
 </BaseLayout>

@@ -1,0 +1,66 @@
+---
+title: "Hello World"
+pubDate: 2023-10-29
+description: "Welcome to the inaugural post on Once Upon an Ipsum. This is a a space where I'll be sharing miscellaneous insights about web programming and as a public outlet where I can cultivate side projects."
+author: "Mike Ambrozaitis"
+image:
+  src: "src/assets/articles/astro-logo-light-gradient.png"
+  alt: "The full Astro logo."
+tags: ["astro", "dev-in-public"]
+---
+
+Welcome to the inaugural post on Once Upon an Ipsum. This platform serves as a space where I'll be sharing miscellaneous insights about web programming. Additionally, it will serve as a public outlet for me to cultivate side projects.
+
+The website is predominantly constructed using the powerful combination of [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com). The source code is hosted on [GitHub](https://github.com/mambroz27/onceuponanipsum) and deployed through [Cloudflare Pages](https://pages.cloudflare.com).
+
+## Initial Steps with HUGO
+
+Initially, I embarked on this project using [HUGO](https://gohugo.io), but it swiftly became apparent that it didn't align with my preferences. While it's common to work with tools one may not particularly enjoy in a professional setting, for a personal project, I believe it's crucial to work with tools that bring joy. There were nuances in HUGO that didn't resonate with my ideal developer experience. However, it's important to note that this isn't a critique of HUGO itself, as it serves its purpose well for many other developers.
+
+## Transition to Astro
+
+Having kept an eye on Astro for some time, I eventually made the switch and haven't looked back since. Working with Astro has been an absolute delight. Its versatile integrations with other frameworks such as [React](https://reactjs.org) and [Svelte](https://svelte.dev) have been particularly exciting. Furthermore, the inclusion of [MDX](https://mdxjs.com) allows for more content rich articles with [islands](https://docs.astro.build/en/concepts/islands/). I plan to showcase the challenges I encounter while developing various projects, and Astro's flexibility makes it seamless to incorporate components from other frameworks within my static site.
+
+## Getting Started with Astro
+
+### Use the Astro Docs
+
+The folks behind Astro have crafted some wonderful [docs](https://docs.astro.build/en/getting-started/) that will walk you through getting started, adding integrations, building a blog and more. Their introduction is so well done for developers of any skill level that it doesn't make sense to explain the process here. I would suggest going through the turorials to get started.
+
+### Editor Setup
+
+If you're using [VS Code](https://code.visualstudio.com/) you will want to install the official [Astro Extension](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode) and you may want to add [Houston](https://marketplace.visualstudio.com/items?itemName=astro-build.houston) as well. Houston will provide a theme that matches the Astro vibe, if you're into that, and a fun little indicator for when errors occur. If you're not using VS Code check our the [Editor Setup](https://docs.astro.build/en/editor-setup/) section in the Astro Docs.
+
+## Integrations
+
+Astro has lots of [integrations](https://docs.astro.build/en/guides/integrations-guide/) and continuing the trend, their docs are very good. I'll cover a few integrations I've added below for a quick reference.
+
+### Tailwind
+
+I am a recent [Tailwind](https://tailwindcss.com) convert and Astro has made it super easy to integrate. The Astro docs have a [guide](https://docs.astro.build/en/guides/integrations-guide/tailwind/), but adding Tailwind is as easy as running the following in your project terminal:
+
+```shell
+# With NPM
+npx astro add tailwind
+# With Yarn
+yarn astro add tailwind
+# With PNPM
+pnpm astro add tailwind
+```
+
+### MDX
+
+I am also using [MDX](https://mdxjs.com) on Once Upon and Ipsum to build more rich articles, continuing the pattern, Astro has also made this integration super easy to get going with. There is a [guide](https://docs.astro.build/en/guides/integrations-guide/mdx/), but it is as easy as running the following in your project terminal:
+
+```shell
+# With NPM
+npx astro add mdx
+# With Yarn
+yarn astro add mdx
+# With PNPM
+pnpm astro add mdx
+```
+
+## Up Next
+
+In this article I've only provided some basic resources and information for getting started. I plan to follow this article up with some more in depth looks at Building a Theme Switcher, Using Astro Imagetools to Wrangle Images, Expanding Tailwind Configuration, Integrating Expressive Code, and Handling SEO in Astro.

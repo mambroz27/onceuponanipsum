@@ -4,11 +4,11 @@ import { Picture } from "astro-imagetools/components";
 import BaseLayout from "./BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
 
-interface Props {
+export interface Props {
   article: CollectionEntry<"articles">;
 }
 
-const { article } = Astro.props;
+const { article } = Astro.props as Props;
 const dateObj = new Date(article.data.pubDate);
 const formattedDate = dateObj.toLocaleDateString("en-US", {
   weekday: "long",

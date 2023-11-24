@@ -10,18 +10,6 @@ const articlesCollection = await getCollection("articles");
 
 <BaseLayout pageTitle="Articles">
   <div class="flex flex-col gap-8">
-    {
-      articlesCollection.map((article) => (
-        <Stub
-          slug={`/articles/${article.slug}`}
-          title={article.data.title}
-          pubDate={article.data.pubDate}
-          author={article.data.author}
-          description={article.data.description}
-          tags={article.data.tags}
-          img={article.data.image}
-        />
-      ))
-    }
+    {articlesCollection.map((article) => <Stub article={article} />)}
   </div>
 </BaseLayout>

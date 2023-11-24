@@ -14,10 +14,14 @@
 
   let showMenu = false;
 
-  const buttonStyles =
-    "border-box text-lg flex items-center px-4 gap-2 cursor-pointer transition-all duration-300 text-light-link dark:text-dark-link ease-out child:!fill-light-link child:dark:!fill-dark-link rounded-3xl bg-transparent hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5 h-12";
-
-  const buttonActiveStyles = buttonStyles + " font-bold";
+  const buttonBaseStyles =
+    "border-box text-lg flex items-center px-4 gap-2 cursor-pointer transition-all duration-300 ease-out rounded-3xl bg-transparent hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5 h-12";
+  const buttonInactiveStyles =
+    buttonBaseStyles +
+    " text-light-link dark:text-dark-link child:!fill-light-link child:dark:!fill-dark-link";
+  const buttonActiveStyles =
+    buttonBaseStyles +
+    " text-light-linkHover dark:text-dark-linkHover child:!fill-light-linkHover child:dark:!fill-dark-linkHover";
 
   onMount(() => {
     // Get the saved theme preference
@@ -109,7 +113,9 @@
       class="border-box overflow-hidden absolute top-0 left-0 rounded-3xl border-2 border-light-textMuted/10 dark:border-dark-textMuted/10 bg-light-bg dark:bg-dark-bg shadow-lg z-10 flex flex-col"
     >
       <button
-        class={activeTheme === "dark" ? buttonActiveStyles : buttonStyles}
+        class={activeTheme === "dark"
+          ? buttonActiveStyles
+          : buttonInactiveStyles}
         on:click={() => changeTheme("dark")}
       >
         <span>
@@ -118,7 +124,9 @@
         <span>Dark</span>
       </button>
       <button
-        class={activeTheme === "light" ? buttonActiveStyles : buttonStyles}
+        class={activeTheme === "light"
+          ? buttonActiveStyles
+          : buttonInactiveStyles}
         on:click={() => changeTheme("light")}
       >
         <span>
@@ -127,7 +135,7 @@
         <span>Light</span>
       </button>
       <button
-        class={activeTheme === null ? buttonActiveStyles : buttonStyles}
+        class={activeTheme === null ? buttonActiveStyles : buttonInactiveStyles}
         on:click={() => changeTheme(null)}
       >
         <span>
