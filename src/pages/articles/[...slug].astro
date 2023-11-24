@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import MdArticleLayout from "@/layouts/MdArticleLayout.astro";
+import ArticleLayout from "@/layouts/ArticleLayout.astro";
 
 export async function getStaticPaths() {
   const articlesCollection = await getCollection("articles");
@@ -15,6 +15,6 @@ const { article } = Astro.props;
 const { Content } = await article.render();
 ---
 
-<MdArticleLayout frontmatter={article.data}>
+<ArticleLayout article={article}>
   <Content />
-</MdArticleLayout>
+</ArticleLayout>

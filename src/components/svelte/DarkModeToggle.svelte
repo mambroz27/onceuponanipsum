@@ -69,7 +69,7 @@
 
 <button
   class="{activeTheme === null
-    ? 'opacity-0 pointer-events-none'
+    ? 'opacity-60 pointer-events-none'
     : 'opacity-100'} {styles}"
   on:click={toggleTheme}
 >

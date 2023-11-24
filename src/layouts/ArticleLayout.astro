@@ -1,0 +1,58 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Picture } from "astro-imagetools/components";
+import BaseLayout from "./BaseLayout.astro";
+import NavLink from "@/components/NavLink.astro";
+
+interface Props {
+  article: CollectionEntry<"articles">;
+}
+
+const { article } = Astro.props;
+const dateObj = new Date(article.data.pubDate);
+const formattedDate = dateObj.toLocaleDateString("en-US", {
+  weekday: "long",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+// TODO: Share Component
+---
+
+<BaseLayout pageTitle={article.data.title}>
+  <div
+    class="prose prose-slate mx-auto dark:prose-invert my-5 prose-sm sm:prose-base lg:prose-lg dark-transition">
+    <small
+      class="not-prose text-light-textMuted dark:text-dark-textMuted dark-transition text-xs mb-2"
+      >{formattedDate}</small
+    >
+    <h1 class="!mb-2">{article.data.title}</h1>
+    <div class="flex items-center mb-10 gap-2">
+      {
+        article.data.tags.map((tag) => (
+          <NavLink
+            url={`/tags/${tag}`}
+            size="sm"
+            classes="not-prose">
+            #{tag}
+          </NavLink>
+        ))
+      }
+    </div>
+    {
+      article.data.image && (
+        <div class="not-prose rounded-3xl overflow-hidden">
+          <Picture
+            src={article.data.image?.url}
+            alt={article.data.image?.alt}
+            width={1200}
+            height={630}
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+    <slot />
+  </div>
+</BaseLayout>
