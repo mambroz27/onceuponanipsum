@@ -44,8 +44,8 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
       article.data.image && (
         <div class="not-prose rounded-3xl overflow-hidden">
           <Picture
-            src={article.data.image?.url}
-            alt={article.data.image?.alt}
+            src={article.data.image.src}
+            alt={article.data.image.alt}
             width={1200}
             height={630}
             loading="lazy"

@@ -4,7 +4,7 @@ pubDate: 2023-10-29
 description: "Welcome to the inaugural post on Once Upon an Ipsum. This is a a space where I'll be sharing miscellaneous insights about web programming and as a public outlet where I can cultivate side projects."
 author: "Mike Ambrozaitis"
 image:
-  url: "/img/astro-logo-light-gradient.png"
+  src: "src/assets/articles/astro-logo-light-gradient.png"
   alt: "The full Astro logo."
 tags: ["astro", "dev-in-public"]
 ---
