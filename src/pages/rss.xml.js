@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-// TODO: Include projects in the RSS feed
+// TODO: ⏺ Include projects in the RSS feed
 
 export async function GET(context) {
   const articlesCollection = await getCollection("articles");

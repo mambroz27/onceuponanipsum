@@ -56,7 +56,7 @@ export default {
           accent: tropicalIndigo[900],
           primary: defaultColors.orange[700],
           text: defaultColors.slate[200],
-          textMuted: defaultColors.slate[300],
+          textMuted: defaultColors.slate[400],
           link: defaultColors.indigo[200],
           linkHover: defaultColors.orange[400],
         },
@@ -64,6 +64,8 @@ export default {
       typography: (theme) => ({
         slate: {
           css: {
+            "--tw-prose-body": theme("colors.slate.700"),
+            "--tw-prose-invert-body": theme("colors.slate.200"),
             "--tw-prose-links": theme("colors.light.link"),
             "--tw-prose-invert-headings": theme("colors.slate.100"),
             "--tw-prose-invert-links": theme("colors.dark.link"),

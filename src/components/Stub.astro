@@ -14,10 +14,9 @@ const {
   classes = "",
   clampDescriptionTo = 180,
 } = Astro.props as Props;
-
+const { remarkPluginFrontmatter } = await article.render();
 const dateObj = new Date(article.data.pubDate);
 const formattedDate = dateObj.toLocaleDateString("en-US", {
-  weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
@@ -46,7 +45,7 @@ const stubClasses = twMerge(
   classes
 );
 
-// TODO: Add some special styling for projects, maybe for articles too. Maybe a ghosted background image of some kind?
+// TODO: ⏬ Add some special styling for projects, maybe for articles too. Maybe a ghosted background image of some kind?
 ---
 
 <a
@@ -68,25 +67,30 @@ const stubClasses = twMerge(
     }
     <div
       class="prose prose-slate dark:prose-invert h-52 md:h-[180px] lg:h-[150px] overflow-hidden">
-      <small
-        class="text-light-textMuted dark:text-dark-textMuted dark-transition text-xs"
-        ><span class="hidden md:inline">{formattedDate}</span><span
-          class="md:hidden">{formattedShortDate}</span
-        > | {article.data.author}</small
-      >
+      <div
+        class="text-light-textMuted dark:text-dark-textMuted dark-transition text-xs flex items-center gap-2 not-prose">
+        <span class="hidden md:inline">{formattedDate}</span>
+        <span class="md:hidden">{formattedShortDate}</span>
+        <span>|</span>
+        <span>{article.data.author}</span>
+      </div>
       <h2
-        class="text-xl my-2 text-light-link dark:text-dark-link dark-transition">
+        class="text-xl mt-1 mb-2 text-light-link dark:text-dark-link dark-transition">
         {article.data.title}
       </h2>
-      <p class="text-sm leading-relaxed">
+      <p class="text-sm leading-relaxed !mb-0">
         {formattedDescription}
       </p>
+      <small
+        class="not-prose text-xs text-light-textMuted dark:text-dark-textMuted dark-transition"
+        >{remarkPluginFrontmatter.readingTime}</small
+      >
     </div>
   </div>
   <div class="flex items-center justify-end mt-3 gap-2">
     {
       article.data.tags.map((tag) => (
-        <span class="text-xs text-light-textMuted dark:text-dark-textMuted dark-transition bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
+        <span class="text-xs text-light-text dark:text-dark-text dark-transition bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
           #{tag}
         </span>
       ))
