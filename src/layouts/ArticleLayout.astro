@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { Picture } from "astro-imagetools/components";
 import BaseLayout from "./BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
+import SocialShare from "@/components/SocialShare.astro";
 
 export interface Props {
   article: CollectionEntry<"articles">;
@@ -18,7 +19,7 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
   day: "numeric",
 });
 
-// TODO: ⏫ Share Component
+// TODO: Add Author Blurb
 ---
 
 <BaseLayout pageTitle={article.data.title}>
@@ -29,6 +30,12 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
       <span>{formattedDate}</span>
       <span>|</span>
       <span>{remarkPluginFrontmatter.readingTime}</span>
+      <div class="ml-auto">
+        <SocialShare
+          url={`https://onceuponanipsum.dev/articles/${article.slug}`}
+          title={article.data.title}
+        />
+      </div>
     </div>
     <h1 class="!mb-2">{article.data.title}</h1>
     <div class="flex items-center mb-10 gap-2">

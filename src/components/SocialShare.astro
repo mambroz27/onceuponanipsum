@@ -1,0 +1,29 @@
+---
+export interface Props {
+  types?: ShareType[];
+  url: string;
+  title: string;
+}
+
+import IconLink from "./IconLink.astro";
+import { getShareUrl } from "@/utils/social-share";
+import type { ShareType } from "@/utils/social-share";
+
+const {
+  types = ["facebook", "reddit", "linkedin", "email"],
+  url,
+  title,
+} = Astro.props as Props;
+---
+
+<div class="flex items-cetner gap-2">
+  {
+    types.map((type) => (
+      <IconLink
+        url={getShareUrl(type, url, title)}
+        icon={type}
+        openNew={true}
+      />
+    ))
+  }
+</div>

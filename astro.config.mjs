@@ -26,5 +26,3 @@ export default defineConfig({
     svelte(),
   ],
 });
-
-// TODO: ⏫ Add a custom 404 page

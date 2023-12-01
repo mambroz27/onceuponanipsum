@@ -1,0 +1,17 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import notFoundGif from "../assets/gifs/404.gif";
+---
+
+<BaseLayout pageTitle="Not Found">
+  <div class="prose text-center dark:prose-invert mx-auto">
+    <Image
+      src={notFoundGif}
+      alt="Not Found"
+      class="mx-auto"
+      width="320"
+    />
+    <p class="text-xl">Sorry, that page doesn't exist.</p>
+  </div>
+</BaseLayout>
