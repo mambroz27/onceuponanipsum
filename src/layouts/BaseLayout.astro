@@ -10,7 +10,9 @@ import Footer from "../components/Footer.astro";
 const { pageTitle = null } = Astro.props as Props;
 ---
 
-<html lang="en">
+<html
+  lang="en"
+  class="dark">
   <head>
     <meta charset="utf-8" />
     <link
@@ -58,23 +60,23 @@ const { pageTitle = null } = Astro.props as Props;
     </title>
 
     <script is:inline>
-      const theme = (() => {
-        if (
-          typeof localStorage !== "undefined" &&
-          localStorage.getItem("theme")
-        ) {
-          return localStorage.getItem("theme");
-        }
-        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          return "dark";
-        }
-        return "light";
-      })();
+      // Get the saved theme preference
+      let userTheme = localStorage.getItem("theme");
 
-      if (theme === "light") {
+      // Get the system preference
+      let systemTheme =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+
+      // If we have a saved theme, use it. Otherwise, default to dark
+      let activeTheme =
+        userTheme === "system" ? systemTheme : userTheme || "dark";
+
+      // Set the active theme
+      if (activeTheme !== "dark") {
         document.documentElement.classList.remove("dark");
-      } else {
-        document.documentElement.classList.add("dark");
       }
     </script>
   </head>

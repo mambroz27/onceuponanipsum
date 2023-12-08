@@ -9,8 +9,8 @@
   import deviceModeFilledIcon from "../../assets/icons/device-mode-filled.svg?raw";
 
   let systemTheme: "light" | "dark" | null = null;
-  let userTheme: "light" | "dark" | null = null;
-  let activeTheme: "light" | "dark" | null = null;
+  let userTheme: "light" | "dark" | "system" | null = null;
+  let activeTheme: "light" | "dark" | "system" = "dark";
 
   let showMenu = false;
 
@@ -25,7 +25,11 @@
 
   onMount(() => {
     // Get the saved theme preference
-    userTheme = localStorage.getItem("theme") as "light" | "dark" | null;
+    userTheme = localStorage.getItem("theme") as
+      | "light"
+      | "dark"
+      | "system"
+      | null;
 
     // Get the system preference
     systemTheme =
@@ -35,7 +39,7 @@
         : "light";
 
     // If we have a saved theme, use it. Otherwise, default to dark
-    activeTheme = userTheme ?? "dark";
+    activeTheme = userTheme === "system" ? systemTheme : userTheme || "dark";
 
     // Watch for changes to the system preference
     window
@@ -45,14 +49,22 @@
 
         // Update system preference
         systemTheme = newColorScheme;
+
+        if (userTheme === "system") {
+          // If we're using the system preference, update the active theme
+          changeTheme("system");
+        }
       });
+
+    // Update the root class
+    updateRootClass();
   });
 
   /**
    * Open the menu
    * Adds event listener to close the menu when clicking outside
    */
-  function handleMenuOpen() {
+  function handleMenuOpen(): void {
     showMenu = true;
     document.body.addEventListener("click", handleMenuClose);
   }
@@ -61,7 +73,7 @@
    * Close the menu
    * Removes event listener to close the menu when clicking outside
    */
-  function handleMenuClose() {
+  function handleMenuClose(): void {
     showMenu = false;
     document.body.removeEventListener("click", handleMenuClose);
   }
@@ -69,14 +81,11 @@
   /**
    * Toggle the active theme class
    */
-  function updateRootClass() {
-    let theme = activeTheme;
+  function updateRootClass(): void {
+    let requestedTheme =
+      activeTheme === "system" ? systemTheme || "dark" : activeTheme;
 
-    if (activeTheme === null) {
-      theme = systemTheme;
-    }
-
-    if (theme === "dark") {
+    if (requestedTheme === "dark") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");
@@ -86,18 +95,18 @@
   /**
    * Change the active theme
    */
-  function changeTheme(theme: "light" | "dark" | null) {
+  function changeTheme(theme: "light" | "dark" | "system"): void {
     activeTheme = theme;
 
-    if (activeTheme === null) {
-      // Remove saved preference if it matches system default
+    updateRootClass();
+
+    if (activeTheme === "dark") {
+      // Remove saved preference if it matches the default
       localStorage.removeItem("theme");
     } else {
       // Save explicit setting to local storage
       localStorage.setItem("theme", activeTheme);
     }
-
-    updateRootClass();
   }
 </script>
 
@@ -135,11 +144,15 @@
         <span>Light</span>
       </button>
       <button
-        class={activeTheme === null ? buttonActiveStyles : buttonInactiveStyles}
-        on:click={() => changeTheme(null)}
+        class={activeTheme === "system"
+          ? buttonActiveStyles
+          : buttonInactiveStyles}
+        on:click={() => changeTheme("system")}
       >
         <span>
-          {@html activeTheme === null ? deviceModeFilledIcon : deviceModeIcon}
+          {@html activeTheme === "system"
+            ? deviceModeFilledIcon
+            : deviceModeIcon}
         </span>
         <span>Device</span>
       </button>
