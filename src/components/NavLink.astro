@@ -2,6 +2,7 @@
 export interface Props {
   url: string;
   openNew?: boolean;
+  rel?: string[];
   size?: "sm" | "md";
   classes?: string;
 }
@@ -11,6 +12,7 @@ import { twMerge } from "tailwind-merge";
 const {
   url,
   openNew = false,
+  rel = [],
   size = "md",
   classes = "",
 } = Astro.props as Props;
@@ -30,11 +32,19 @@ const tw = twMerge(
   active ? "text-light-linkHover dark:text-dark-linkHover" : "",
   classes
 );
+
+let relArray = rel;
+
+if (openNew) {
+  relArray = [...relArray, "noopener", "noreferrer"];
+  relArray = [...new Set(relArray)];
+}
 ---
 
 <a
   href={url}
-  {...openNew && { target: "_blank", rel: "noopener noreferrer" }}
+  {...openNew && { target: "_blank" }}
+  {...relArray.length > 0 && { rel: relArray.join(" ") }}
   class={tw}>
   <slot />
 </a>

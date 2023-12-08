@@ -3,12 +3,19 @@ export interface Props {
   url: string;
   icon: string;
   openNew?: boolean;
+  rel?: string[];
   classes?: string;
 }
 
 import { twMerge } from "tailwind-merge";
 
-const { url, icon, openNew = false, classes = "" } = Astro.props as Props;
+const {
+  url,
+  icon,
+  openNew = false,
+  rel = [],
+  classes = "",
+} = Astro.props as Props;
 const { default: innerHTML } = await import(`../assets/icons/${icon}.svg?raw`);
 const tw = twMerge(
   "h-6 w-6 text-[24px] leading-[24px] flex items-center justify-center dark-transition child:dark-transition",
@@ -16,11 +23,19 @@ const tw = twMerge(
   "dark:text-dark-link dark:hover:text-dark-linkHover dark:child:!fill-dark-link dark:child-hover:!fill-dark-linkHover",
   classes
 );
+
+let relArray = rel;
+
+if (openNew) {
+  relArray = [...relArray, "noopener", "noreferrer"];
+  relArray = [...new Set(relArray)];
+}
 ---
 
 <a
   href={url}
-  {...openNew && { target: "_blank", rel: "noopener noreferrer" }}
+  {...openNew && { target: "_blank" }}
+  {...relArray.length > 0 && { rel: relArray.join(" ") }}
   class={tw}>
   <Fragment set:html={innerHTML} />
 </a>
