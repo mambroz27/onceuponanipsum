@@ -4,7 +4,8 @@
     "astro-build.houston",
     "unifiedjs.vscode-mdx",
     "svelte.svelte-vscode",
-    "johnpapa.vscode-peacock"
+    "johnpapa.vscode-peacock",
+    "Gruntfuggly.todo-tree"
   ],
   "unwantedRecommendations": []
 }

@@ -14,6 +14,7 @@
 			"activityBarBadge.foreground": "#e7e7e7",
 			"sideBar.border": "#40375e"
 		},
-		"peacock.color": "#2a243e"
+		"peacock.color": "#2a243e",
+		"workbench.colorTheme": "Houston"
 	}
 }
