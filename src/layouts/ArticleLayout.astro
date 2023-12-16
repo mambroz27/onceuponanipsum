@@ -41,7 +41,7 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
     <h1 class="!mb-2">{article.data.title}</h1>
     <div class="flex items-center mb-10 gap-2">
       {
-        article.data.tags.map((tag) => (
+        article.data.tags.map((tag: string) => (
           <NavLink
             url={`/tags/${tag}`}
             size="sm"
