@@ -7,32 +7,23 @@ import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 
-// TODO: ⏬ Build custom  Astro Expressive Code theme
+// TODO: [LOW] Build custom  Astro Expressive Code theme
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
+import sitemap from "@astrojs/sitemap";
 const expressiveCodeOptions = {
-  themes: ["one-dark-pro"],
+  themes: ["one-dark-pro"]
 };
+
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://onceuponanipsum.dev",
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          rel: ["external", "noopener"],
-        },
-      ],
-    ],
-    remarkPlugins: [remarkReadingTime],
+    rehypePlugins: [[rehypeExternalLinks, {
+      rel: ["external", "noopener"]
+    }]],
+    remarkPlugins: [remarkReadingTime]
   },
-  integrations: [
-    astroImageTools,
-    tailwind(),
-    expressiveCode(expressiveCodeOptions),
-    mdx(),
-    svelte(),
-  ],
+  integrations: [astroImageTools, tailwind(), expressiveCode(expressiveCodeOptions), mdx(), svelte(), sitemap()]
 });
