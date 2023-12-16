@@ -6,24 +6,38 @@ import tailwind from "@astrojs/tailwind";
 import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
 // TODO: [LOW] Build custom  Astro Expressive Code theme
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
-import sitemap from "@astrojs/sitemap";
 const expressiveCodeOptions = {
-  themes: ["one-dark-pro"]
+  themes: ["one-dark-pro"],
 };
-
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://onceuponanipsum.dev",
-  markdown: {
-    rehypePlugins: [[rehypeExternalLinks, {
-      rel: ["external", "noopener"]
-    }]],
-    remarkPlugins: [remarkReadingTime]
+  redirects: {
+    "/articles": "/articles/1",
   },
-  integrations: [astroImageTools, tailwind(), expressiveCode(expressiveCodeOptions), mdx(), svelte(), sitemap()]
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          rel: ["external", "noopener"],
+        },
+      ],
+    ],
+    remarkPlugins: [remarkReadingTime],
+  },
+  integrations: [
+    astroImageTools,
+    tailwind(),
+    expressiveCode(expressiveCodeOptions),
+    mdx(),
+    svelte(),
+    sitemap(),
+  ],
 });

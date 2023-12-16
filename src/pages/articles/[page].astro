@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Stub from "@/components/Stub.astro";
+import { getCollection } from "astro:content";
+import Paginator from "@/components/Paginator.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const articlesCollection = await getCollection("articles");
+
+  articlesCollection.sort((a, b) => {
+    return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+  });
+
+  return paginate(articlesCollection, { pageSize: 2 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout pageTitle="Articles">
+  <div class="flex flex-col gap-8">
+    {page.data.map((article) => <Stub article={article} />)}
+  </div>
+  <Paginator
+    base="articles"
+    next={page.url.next}
+    prev={page.url.prev}
+    total={page.lastPage}
+    current={page.currentPage}
+  />
+</BaseLayout>
