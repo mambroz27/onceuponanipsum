@@ -9,6 +9,8 @@ import svelte from "@astrojs/svelte";
 import sitemap from "@astrojs/sitemap";
 
 // TODO: [LOW] Build custom  Astro Expressive Code theme
+// TODO: [HI] Review style breakpoints
+// TODO: [LOW] Add view transitions
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 const expressiveCodeOptions = {

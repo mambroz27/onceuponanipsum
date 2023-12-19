@@ -1,0 +1,74 @@
+---
+export interface Props {
+  types?: ShareType[];
+  url: string;
+  title: string;
+  shareText?: string;
+}
+
+import IconLink from "./IconLink.astro";
+import { getShareUrl } from "@/utils/social-share";
+import type { ShareType } from "@/utils/social-share";
+
+const {
+  types = ["facebook", "reddit", "linkedin", "email"],
+  url,
+  title,
+  shareText = "Share this article:",
+} = Astro.props as Props;
+---
+
+<script>
+  let shareButtons: NodeListOf<HTMLButtonElement> | null = null;
+  let shareDialog: HTMLDialogElement | null = null;
+
+  window.addEventListener("DOMContentLoaded", () => {
+    shareButtons = document.querySelectorAll("button[share-button]");
+    shareDialog = document.querySelector("dialog[share-dialog]");
+    const socialButtons = document.querySelectorAll("dialog[share-dialog] > a");
+
+    console.log(shareButtons);
+    console.log(shareDialog);
+
+    shareButtons.forEach((button) => {
+      button.addEventListener("click", openShareDialog);
+    });
+
+    socialButtons.forEach((button) => {
+      button.addEventListener("click", closeShareDialog);
+    });
+  });
+
+  function openShareDialog(event: Event): void {
+    event.stopPropagation();
+    shareDialog?.showModal();
+    document.body.addEventListener("click", closeShareDialog);
+  }
+
+  function closeShareDialog(): void {
+    shareDialog?.close();
+    document.body.removeEventListener("click", closeShareDialog);
+  }
+</script>
+
+<dialog
+  share-dialog
+  class="opacity-0 open:opacity-100 pointer-events-none open:pointer-events-auto flex flex-col items-center p-4 rounded-lg shadow-xl bg-dark-accent backdrop:bg-black/0 open:backdrop:bg-black/60 backdrop:backdrop-blur-none open:backdrop:backdrop-blur-sm transition-all duration-300">
+  <h3>{shareText}</h3>
+  <div class="flex items-cetner gap-2">
+    {
+      types.map((type) => (
+        <IconLink
+          url={getShareUrl(type, url, title)}
+          icon={type}
+          openNew={true}
+          rel={["external"]}
+        />
+      ))
+    }
+  </div>
+  <input
+    type="text"
+    value={url}
+  />
+</dialog>

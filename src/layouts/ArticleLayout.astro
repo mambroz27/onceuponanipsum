@@ -3,7 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import { Picture } from "astro-imagetools/components";
 import BaseLayout from "./BaseLayout.astro";
 import NavLink from "@/components/NavLink.astro";
-import SocialShare from "@/components/SocialShare.astro";
+import SocialShareButton from "@/components/SocialShareButton.astro";
+import SocialShareDialog from "@/components/SocialShareDialog.astro";
 
 export interface Props {
   article: CollectionEntry<"articles">;
@@ -12,34 +13,38 @@ export interface Props {
 const { article } = Astro.props as Props;
 const { remarkPluginFrontmatter } = await article.render();
 const dateObj = new Date(article.data.pubDate);
-const formattedDate = dateObj.toLocaleDateString("en-US", {
+const formattedDateLong = dateObj.toLocaleDateString("en-US", {
   weekday: "long",
   year: "numeric",
   month: "long",
   day: "numeric",
 });
+const formattedDateShort = dateObj.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
 
-// TODO: [MED] Add Author Blurb
-// TODO: [MED] Add Related Posts
+// TODO: [LOW] Add Author Blurb
+// TODO: [LOW] Add Related Posts
 ---
 
 <BaseLayout pageTitle={article.data.title}>
   <div
-    class="prose prose-slate mx-auto dark:prose-invert my-5 prose-sm sm:prose-base lg:prose-lg dark-transition">
+    class="prose prose-slate mx-auto dark:prose-invert my-5 prose-sm sm:prose-base lg:prose-lg dark-transition flex flex-wrap justify-between">
     <div
-      class="not-prose text-light-textMuted dark:text-dark-textMuted dark-transition text-xs mb-2 flex items-center gap-2">
-      <span>{formattedDate}</span>
-      <span>|</span>
-      <span>{remarkPluginFrontmatter.readingTime}</span>
-      <div class="ml-auto">
-        <SocialShare
-          url={`https://onceuponanipsum.dev/articles/${article.slug}`}
-          title={article.data.title}
-        />
+      class="not-prose text-light-textMuted dark:text-dark-textMuted dark-transition text-xs mb-2 flex items-center gap-2 w-full justify-center">
+      <span class="hidden md:inline">{formattedDateLong}</span>
+      <span class="md:hidden">{formattedDateShort}</span>
+      <div class="block w-[1px] bg-light-textMuted dark:bg-dark-textMuted h-5">
       </div>
+      <span>{remarkPluginFrontmatter.readingTime}</span>
+      <div class="block w-[1px] bg-light-textMuted dark:bg-dark-textMuted h-5">
+      </div>
+      <SocialShareButton size="sm" />
     </div>
-    <h1 class="!mb-2">{article.data.title}</h1>
-    <div class="flex items-center mb-10 gap-2">
+    <h1 class="!mb-2 text-center w-full">{article.data.title}</h1>
+    <div class="flex items-center mb-10 gap-2 w-full justify-center flex-wrap">
       {
         article.data.tags.map((tag: string) => (
           <NavLink
@@ -53,7 +58,7 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
     </div>
     {
       article.data.image && (
-        <div class="not-prose rounded-3xl overflow-hidden">
+        <div class="not-prose rounded-3xl overflow-hidden w-full">
           <Picture
             src={article.data.image.src}
             alt={article.data.image.alt}
@@ -64,6 +69,12 @@ const formattedDate = dateObj.toLocaleDateString("en-US", {
         </div>
       )
     }
-    <slot />
+    <div class="w-full">
+      <slot />
+    </div>
   </div>
 </BaseLayout>
+<SocialShareDialog
+  url={`https://onceuponanipsum.dev/articles/${article.slug}`}
+  title={article.data.title}
+/>

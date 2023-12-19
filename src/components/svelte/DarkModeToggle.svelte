@@ -42,23 +42,30 @@
     activeTheme = userTheme === "system" ? systemTheme : userTheme || "dark";
 
     // Watch for changes to the system preference
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        const newColorScheme = event.matches ? "dark" : "light";
-
-        // Update system preference
-        systemTheme = newColorScheme;
-
-        if (userTheme === "system") {
-          // If we're using the system preference, update the active theme
-          changeTheme("system");
-        }
-      });
+    const mediaQueryList = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQueryList.addEventListener("change", syncSystemTheme);
 
     // Update the root class
     updateRootClass();
+
+    // Clean up the event listener
+    return () => mediaQueryList.removeEventListener("change", syncSystemTheme);
   });
+
+  /**
+   * Sync System Theme
+   */
+  function syncSystemTheme(event: MediaQueryListEvent): void {
+    const newColorScheme = event.matches ? "dark" : "light";
+
+    // Update system preference
+    systemTheme = newColorScheme;
+
+    if (userTheme === "system") {
+      // If we're using the system preference, update the active theme
+      changeTheme("system");
+    }
+  }
 
   /**
    * Open the menu
