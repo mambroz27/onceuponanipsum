@@ -1,6 +1,7 @@
 ---
 export interface Props {
   url: string;
+  matches?: ":n" | "fuzzy" | null;
   openNew?: boolean;
   rel?: string[];
   size?: "sm" | "md";
@@ -11,13 +12,26 @@ import { twMerge } from "tailwind-merge";
 
 const {
   url,
+  matches = null,
   openNew = false,
   rel = [],
   size = "md",
   classes = "",
 } = Astro.props as Props;
-const fullUrl = new URL(Astro.request.url);
-const active = url === fullUrl.pathname;
+
+const active = (): boolean => {
+  const fullUrl = new URL(Astro.request.url);
+
+  switch (matches) {
+    case ":n":
+      const regex = new RegExp(`^${url}/\\d+$`);
+      return regex.test(fullUrl.pathname);
+    case "fuzzy":
+      return fullUrl.pathname.includes(url);
+  }
+
+  return fullUrl.pathname === url;
+};
 
 const tw = twMerge(
   "styled-link",
@@ -29,7 +43,7 @@ const tw = twMerge(
   "bg-transparent",
   "hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5",
   size === "sm" ? "text-sm px-2 gap-1 h-7 border" : "",
-  active ? "text-light-linkHover dark:text-dark-linkHover" : "",
+  active() ? "text-light-linkHover dark:text-dark-linkHover" : "",
   classes
 );
 

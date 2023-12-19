@@ -45,7 +45,7 @@ const stubClasses = twMerge(
   classes
 );
 
-// TODO: ⏬ Add some special styling for projects, maybe for articles too. Maybe a ghosted background image of some kind?
+// TODO: [LOW] Add some special styling for projects, maybe for articles too. Maybe a ghosted background image of some kind?
 ---
 
 <a
@@ -89,7 +89,7 @@ const stubClasses = twMerge(
   </div>
   <div class="flex items-center justify-end mt-3 gap-2">
     {
-      article.data.tags.map((tag) => (
+      article.data.tags.map((tag: string) => (
         <span class="text-xs text-light-text dark:text-dark-text dark-transition bg-light-accent dark:bg-dark-accent rounded-md px-2 py-1">
           #{tag}
         </span>

@@ -6,8 +6,9 @@ import tailwind from "@astrojs/tailwind";
 import expressiveCode from "astro-expressive-code";
 import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
+import sitemap from "@astrojs/sitemap";
 
-// TODO: ⏬ Build custom  Astro Expressive Code theme
+// TODO: [LOW] Build custom  Astro Expressive Code theme
 
 /** @type {import('astro-expressive-code').AstroExpressiveCodeOptions} */
 const expressiveCodeOptions = {
@@ -17,6 +18,9 @@ const expressiveCodeOptions = {
 // https://astro.build/config
 export default defineConfig({
   site: "https://onceuponanipsum.dev",
+  redirects: {
+    "/articles": "/articles/1",
+  },
   markdown: {
     rehypePlugins: [
       [
@@ -34,5 +38,6 @@ export default defineConfig({
     expressiveCode(expressiveCodeOptions),
     mdx(),
     svelte(),
+    sitemap(),
   ],
 });

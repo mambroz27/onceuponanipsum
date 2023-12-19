@@ -1,0 +1,91 @@
+---
+import { twMerge } from "tailwind-merge";
+export interface props {
+  base: string;
+  next: string;
+  prev: string;
+  total: number;
+  current: number;
+}
+
+const { default: firstIcon } = await import(
+  "../assets/icons/angles-left.svg?raw"
+);
+const { default: prevIcon } = await import(
+  "../assets/icons/angle-left.svg?raw"
+);
+const { default: lastIcon } = await import(
+  "../assets/icons/angles-right.svg?raw"
+);
+const { default: nextIcon } = await import(
+  "../assets/icons/angle-right.svg?raw"
+);
+
+const { base, next, prev, total, current } = Astro.props;
+const baseClasses =
+  "styled-link border-box flex items-center justify-center p-2 child:!fill-light-link child:dark:!fill-dark-link rounded-3xl border-2 border-transparent bg-transparent text-lg leading-[18px] h-12 w-12";
+const activeClasses =
+  "cursor-pointer transition-all duration-300 ease-out hover:bg-light-textMuted/5 dark:hover:bg-dark-textMuted/5 hover:border-light-textMuted/10 dark:hover:border-dark-textMuted/10";
+const disabledClasses = "opacity-30";
+
+const activeButtonClasses = twMerge(baseClasses, activeClasses);
+const disabledButtonClasses = twMerge(baseClasses, disabledClasses);
+---
+
+{
+  (next || prev) && (
+    <div class="flex items-center mt-2 gap-2">
+      {prev ? (
+        <>
+          <a
+            href={`/${base}/1`}
+            class={activeButtonClasses}>
+            <Fragment set:html={firstIcon} />
+          </a>
+          <a
+            href={prev}
+            class={activeButtonClasses}>
+            <Fragment set:html={prevIcon} />
+          </a>
+        </>
+      ) : (
+        <>
+          <div class={disabledButtonClasses}>
+            <Fragment set:html={firstIcon} />
+          </div>
+          <div class={disabledButtonClasses}>
+            <Fragment set:html={prevIcon} />
+          </div>
+        </>
+      )}
+      <div class="grow flex justify-center">
+        <span class="text-xs text-light-textMuted dark:text-dark-textMuted">
+          {current} / {total}
+        </span>
+      </div>
+      {next ? (
+        <>
+          <a
+            href={next}
+            class={activeButtonClasses}>
+            <Fragment set:html={nextIcon} />
+          </a>
+          <a
+            href={`/${base}/${total}`}
+            class={activeButtonClasses}>
+            <Fragment set:html={lastIcon} />
+          </a>
+        </>
+      ) : (
+        <>
+          <div class={disabledButtonClasses}>
+            <Fragment set:html={nextIcon} />
+          </div>
+          <div class={disabledButtonClasses}>
+            <Fragment set:html={lastIcon} />
+          </div>
+        </>
+      )}
+    </div>
+  )
+}
