@@ -117,9 +117,10 @@
   >
     {@html swatchBookIcon}
   </button>
+
   {#if showMenu}
     <div
-      class="border-box overflow-hidden absolute top-0 left-0 rounded-3xl border-2 border-light-textMuted/10 dark:border-dark-textMuted/10 bg-light-bg dark:bg-dark-bg shadow-lg z-10 flex flex-col"
+      class="border-box overflow-hidden absolute top-0 right-0 md:right-auto md:left-0 rounded-3xl border-2 border-light-textMuted/10 dark:border-dark-textMuted/10 bg-light-bg dark:bg-dark-bg shadow-lg z-10 flex flex-col"
     >
       <button
         class={activeTheme === "dark"
