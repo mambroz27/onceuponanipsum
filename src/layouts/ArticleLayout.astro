@@ -33,7 +33,7 @@ const formattedDateShort = dateObj.toLocaleDateString("en-US", {
   <div
     class="prose prose-slate mx-auto dark:prose-invert my-5 prose-sm sm:prose-base lg:prose-lg dark-transition flex flex-wrap justify-between">
     <div
-      class="not-prose text-light-textMuted dark:text-dark-textMuted dark-transition text-xs mb-2 flex items-center gap-2 w-full justify-center">
+      class="not-prose text-light-textMuted dark:text-dark-textMuted dark-transition text-xs mb-2 flex items-center gap-2 w-full justify-center md:justify-start">
       <span class="hidden md:inline">{formattedDateLong}</span>
       <span class="md:hidden">{formattedDateShort}</span>
       <div class="block w-[1px] bg-light-textMuted dark:bg-dark-textMuted h-5">
@@ -43,8 +43,9 @@ const formattedDateShort = dateObj.toLocaleDateString("en-US", {
       </div>
       <SocialShareButton size="sm" />
     </div>
-    <h1 class="!mb-2 text-center w-full">{article.data.title}</h1>
-    <div class="flex items-center mb-10 gap-2 w-full justify-center flex-wrap">
+    <h1 class="!mb-2 text-center md:text-left w-full">{article.data.title}</h1>
+    <div
+      class="flex items-center mb-10 gap-2 w-full justify-center flex-wrap md:justify-start">
       {
         article.data.tags.map((tag: string) => (
           <NavLink

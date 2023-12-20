@@ -61,6 +61,21 @@ export default {
           linkHover: defaultColors.orange[400],
         },
       },
+      animation: {
+        "slide-up": "slide-up 0.3s ease-out forwards",
+      },
+      keyframes: {
+        "slide-up": {
+          "0%": {
+            transform: "translateY(2rem)",
+            opacity: 0,
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: 1,
+          },
+        },
+      },
       typography: (theme) => ({
         slate: {
           css: {
@@ -115,6 +130,7 @@ export default {
     function ({ addVariant }) {
       addVariant("child", "& > *");
       addVariant("child-hover", "& > *:hover");
+      addVariant("dialog-open", "&:has(dialog[open])");
     },
   ],
 };

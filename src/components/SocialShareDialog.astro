@@ -27,9 +27,6 @@ const {
     shareDialog = document.querySelector("dialog[share-dialog]");
     const socialButtons = document.querySelectorAll("dialog[share-dialog] > a");
 
-    console.log(shareButtons);
-    console.log(shareDialog);
-
     shareButtons.forEach((button) => {
       button.addEventListener("click", openShareDialog);
     });
@@ -41,34 +38,37 @@ const {
 
   function openShareDialog(event: Event): void {
     event.stopPropagation();
-    shareDialog?.showModal();
-    document.body.addEventListener("click", closeShareDialog);
+
+    if (shareDialog) {
+      shareDialog?.showModal();
+      document.body.addEventListener("click", closeShareDialog);
+    }
   }
 
   function closeShareDialog(): void {
-    shareDialog?.close();
-    document.body.removeEventListener("click", closeShareDialog);
+    if (shareDialog) {
+      document.body.removeEventListener("click", closeShareDialog);
+      shareDialog.close();
+    }
   }
 </script>
 
 <dialog
   share-dialog
-  class="opacity-0 open:opacity-100 pointer-events-none open:pointer-events-auto flex flex-col items-center p-4 rounded-lg shadow-xl bg-dark-accent backdrop:bg-black/0 open:backdrop:bg-black/60 backdrop:backdrop-blur-none open:backdrop:backdrop-blur-sm transition-all duration-300">
-  <h3>{shareText}</h3>
-  <div class="flex items-cetner gap-2">
-    {
-      types.map((type) => (
-        <IconLink
-          url={getShareUrl(type, url, title)}
-          icon={type}
-          openNew={true}
-          rel={["external"]}
-        />
-      ))
-    }
+  class="pointer-events-none open:pointer-events-auto p-4 rounded-lg shadow-xl bg-dark-accent backdrop:bg-black/0 open:backdrop:bg-black/40 backdrop:backdrop-blur-none open:backdrop:backdrop-blur-sm motion-safe:open:animate-slide-up">
+  <div class="flex flex-col items-center gap-4 prose dark:prose-invert p-4">
+    <h3>{shareText}</h3>
+    <div class="flex items-cetner gap-2 mb-4">
+      {
+        types.map((type) => (
+          <IconLink
+            url={getShareUrl(type, url, title)}
+            icon={type}
+            openNew={true}
+            rel={["external"]}
+          />
+        ))
+      }
+    </div>
   </div>
-  <input
-    type="text"
-    value={url}
-  />
 </dialog>
